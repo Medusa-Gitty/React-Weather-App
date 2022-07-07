@@ -1,5 +1,4 @@
 import "./App.css";
-import UilReact from "@iconscout/react-unicons/icons/uil-react";
 import { Spinner, VStack } from "@chakra-ui/react";
 import TopButtons from "./components/TopButtons";
 import Inputs from "./components/Inputs";
@@ -13,17 +12,17 @@ import { weatherQueryActions } from "./store/weather-query-slice";
 
 function App() {
   const dispatch = useDispatch();
-  let { q, unit, weather } = useSelector((state) => state.weather);
-  console.log(q, unit, weather);
+  let { q, units, weather } = useSelector((state) => state.weather);
+  console.log(q, units, weather);
 
   //Fetching Weather
   useEffect(() => {
     async function weatherData() {
-      const data = await getFormattedWeatherData({ q: q, unit });
+      const data = await getFormattedWeatherData({ q, units });
       dispatch(weatherQueryActions.save(data));
     }
     weatherData();
-  }, [q, unit]);
+  }, [q, units]);
 
   return (
     <VStack p={4} gap={3}>
