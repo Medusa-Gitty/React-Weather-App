@@ -1,6 +1,6 @@
 import "./App.css";
 import UilReact from "@iconscout/react-unicons/icons/uil-react";
-import { VStack } from "@chakra-ui/react";
+import { Spinner, VStack } from "@chakra-ui/react";
 import TopButtons from "./components/TopButtons";
 import Inputs from "./components/Inputs";
 import TimeAndLocation from "./components/TimeAndLocation";
@@ -8,25 +8,44 @@ import TempAndDetails from "./components/TempAndDetails";
 import Forecast from "./components/Forecast";
 import { useEffect } from "react";
 import getFormattedWeatherData from "./services/weatherService";
+import { useSelector, useDispatch } from "react-redux";
+import { weatherQueryActions } from "./store/weather-query-slice";
 
 function App() {
+  const dispatch = useDispatch();
+  let { q, unit, weather } = useSelector((state) => state.weather);
+  console.log(q, unit, weather);
+
+  //Fetching Weather
   useEffect(() => {
     async function weatherData() {
-      const data = await getFormattedWeatherData({ q: "asansol" });
-      console.log(data);
+      const data = await getFormattedWeatherData({ q: q, unit });
+      dispatch(weatherQueryActions.save(data));
     }
     weatherData();
-  }, []);
+  }, [q, unit]);
 
   return (
     <VStack p={4} gap={3}>
       <TopButtons />
       <Inputs />
-
-      <TimeAndLocation />
-      <TempAndDetails />
-      <Forecast title="hourly forecast" />
-      <Forecast title="daily forecast" />
+      {weather && (
+        <>
+          <TimeAndLocation />
+          <TempAndDetails />
+          <Forecast title="hourly forecast" />
+          <Forecast title="daily forecast" />
+        </>
+      )}
+      {!weather && (
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      )}
     </VStack>
   );
 }

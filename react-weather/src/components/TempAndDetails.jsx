@@ -1,4 +1,4 @@
-import { Box, Divider, Flex, HStack, Image, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, Image, VStack } from "@chakra-ui/react";
 import React from "react";
 import {
   UilTemperature,
@@ -9,26 +9,32 @@ import {
 } from "@iconscout/react-unicons";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useSelector } from "react-redux";
+import { iconUrlFromCode } from "../services/weatherService";
 
 const TempAndDetails = () => {
+  let data = useSelector((state) => state.weather.weather);
+
+  console.log(data);
+
   return (
-    <VStack>
-      <Box>Cloudy</Box>
+    <VStack border="1px solid">
+      <Box>{data.details}</Box>
       <HStack>
-        <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoNWkT8w58qoIDjvK8rlmYrXF132cN5tl0fw&usqp=CAU" />
-        <Box>34°C</Box>
+        <Image src={iconUrlFromCode(data.icon)} />
+        <Box>{`${+data.temp.toFixed()}°`}</Box>
         <VStack>
           <Flex>
             <UilTemperature />
-            <span>Real Feel 32*</span>
+            <span>Real Feel {`${+data.feels_like.toFixed()}°`}</span>
           </Flex>
           <Flex>
             <UilTear />
-            <span>Humidity: 65%</span>
+            <span>Humidity: {`${+data.humidity.toFixed()}`}%</span>
           </Flex>
           <Flex>
             <UilWind />
-            <span>Wind: 11km/hr</span>
+            <span>Wind: {`${+data.speed.toFixed()}`}km/hr</span>
           </Flex>
         </VStack>
       </HStack>
