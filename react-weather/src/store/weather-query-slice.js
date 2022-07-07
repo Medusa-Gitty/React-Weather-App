@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   q: "berlin",
-  unit: "metric",
+  units: "metric",
   weather: null,
 };
 const weatherQuerySlice = createSlice({

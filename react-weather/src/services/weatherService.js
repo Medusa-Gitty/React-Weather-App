@@ -7,7 +7,7 @@ const getWeatherData = (infoType, searchParams) => {
   const url = new URL(BASE_URL + "/" + infoType);
   url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
 
-  return fetch(url).then((response) => response.json());
+  return fetch(url).then((res) => res.json());
 };
 
 const formatCurrentWeather = (data) => {
@@ -20,7 +20,9 @@ const formatCurrentWeather = (data) => {
     weather,
     wind: { speed },
   } = data;
+
   const { main: details, icon } = weather[0];
+
   return {
     lat,
     lon,
@@ -40,7 +42,7 @@ const formatCurrentWeather = (data) => {
   };
 };
 
-const formatHourlyWeather = (data) => {
+const formatForecastWeather = (data) => {
   let { timezone, daily, hourly } = data;
   daily = daily.slice(1, 6).map((d) => {
     return {
@@ -49,6 +51,7 @@ const formatHourlyWeather = (data) => {
       icon: d.weather[0].icon,
     };
   });
+
   hourly = hourly.slice(1, 6).map((d) => {
     return {
       title: formatToLocalTime(d.dt, timezone, "hh:mm a"),
@@ -56,29 +59,26 @@ const formatHourlyWeather = (data) => {
       icon: d.weather[0].icon,
     };
   });
-  return {
-    timezone,
-    daily,
-    hourly,
-  };
+
+  return { timezone, daily, hourly };
 };
 
 const getFormattedWeatherData = async (searchParams) => {
   const formattedCurrentWeather = await getWeatherData(
     "weather",
     searchParams
-  ).then((data) => formatCurrentWeather(data));
+  ).then(formatCurrentWeather);
 
   const { lat, lon } = formattedCurrentWeather;
 
-  const formattedDailyForecast = await getWeatherData("onecall", {
+  const formattedForecastWeather = await getWeatherData("onecall", {
     lat,
     lon,
     exclude: "current,minutely,alerts",
-    units: searchParams.unit,
-  }).then((data) => formatHourlyWeather(data));
+    units: searchParams.units,
+  }).then(formatForecastWeather);
 
-  return { ...formattedCurrentWeather, ...formattedDailyForecast };
+  return { ...formattedCurrentWeather, ...formattedForecastWeather };
 };
 
 const formatToLocalTime = (
