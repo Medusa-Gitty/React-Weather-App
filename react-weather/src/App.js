@@ -22,7 +22,7 @@ function App() {
       dispatch(weatherQueryActions.save(data));
     }
     weatherData();
-  }, [q, units]);
+  }, [q, units, dispatch]);
 
   return (
     <VStack p={4} gap={3}>
@@ -32,8 +32,8 @@ function App() {
         <>
           <TimeAndLocation />
           <TempAndDetails />
-          <Forecast title="hourly forecast" />
-          <Forecast title="daily forecast" />
+          <Forecast title="hourly" />
+          <Forecast title="daily" />
         </>
       )}
       {!weather && (

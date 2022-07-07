@@ -7,7 +7,7 @@ const TimeAndLocation = () => {
   const data = useSelector((state) => state.weather.weather);
   return (
     <VStack>
-      <Box>{formatToLocalTime(data.dt)}</Box>
+      <Box>{formatToLocalTime(data.dt, data.timezone)}</Box>
       <Box>{`${data.name}, ${data.country} `}</Box>
     </VStack>
   );

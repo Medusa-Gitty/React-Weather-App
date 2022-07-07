@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  q: "berlin",
+  q: "chittaranjan",
   units: "metric",
   weather: null,
+  lat: null,
+  lon: null,
 };
 const weatherQuerySlice = createSlice({
   name: "weather",
@@ -11,7 +13,9 @@ const weatherQuerySlice = createSlice({
   reducers: {
     save(state, payload) {
       state.weather = payload.payload;
-      console.log(payload);
+    },
+    query(state, payload) {
+      state.q = payload.payload;
     },
   },
 });
