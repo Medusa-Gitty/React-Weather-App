@@ -1,11 +1,14 @@
-import { Box, Flex, Heading, VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import React from "react";
+import { useSelector } from "react-redux";
+import { formatToLocalTime } from "../services/weatherService";
 
 const TimeAndLocation = () => {
+  const data = useSelector((state) => state.weather.weather);
   return (
     <VStack>
-      <Box>Tuesday, 31 March 2022 | Local Time: 12:00 PM</Box>
-      <Box>Chittaranjan / India</Box>
+      <Box>{formatToLocalTime(data.dt)}</Box>
+      <Box>{`${data.name}, ${data.country} `}</Box>
     </VStack>
   );
 };
