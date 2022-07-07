@@ -11,14 +11,13 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useSelector } from "react-redux";
 import { iconUrlFromCode } from "../services/weatherService";
+import { formatToLocalTime } from "../services/weatherService";
 
 const TempAndDetails = () => {
   let data = useSelector((state) => state.weather.weather);
 
-  console.log(data);
-
   return (
-    <VStack border="1px solid">
+    <VStack>
       <Box>{data.details}</Box>
       <HStack>
         <Image src={iconUrlFromCode(data.icon)} />
@@ -41,19 +40,23 @@ const TempAndDetails = () => {
       <HStack>
         <Flex>
           <UilSun />
-          <p>Rise : 06:45 AM</p>
+          <p>
+            Rise : {formatToLocalTime(data.sunrise, data.timezone, "hh:mm a")}
+          </p>
         </Flex>
         <Flex>
           <UilSunset />
-          <p>Set : 06:45 AM</p>
+          <p>
+            Set : {formatToLocalTime(data.sunset, data.timezone, "hh:mm a")}
+          </p>
         </Flex>
         <Flex>
           <KeyboardArrowUpIcon />
-          <p>High : 06:45 AM</p>
+          <p>High : {`${+data.temp_max.toFixed()}°`}</p>
         </Flex>
         <Flex>
           <KeyboardArrowDownIcon />
-          <p>Low : 06:45 AM</p>
+          <p>Low : {`${+data.temp_min.toFixed()}°`}</p>
         </Flex>
       </HStack>
       :
