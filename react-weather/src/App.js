@@ -1,13 +1,23 @@
 import "./App.css";
 import UilReact from "@iconscout/react-unicons/icons/uil-react";
+import { VStack } from "@chakra-ui/react";
 import TopButtons from "./components/TopButtons";
-import { Box } from "@chakra-ui/react";
+import Inputs from "./components/Inputs";
+import TimeAndLocation from "./components/TimeAndLocation";
+import TempAndDetails from "./components/TempAndDetails";
+import Forecast from "./components/Forecast";
 
 function App() {
   return (
-    <Box className="App">
+    <VStack p={4} gap={3}>
       <TopButtons />
-    </Box>
+      <Inputs />
+
+      <TimeAndLocation />
+      <TempAndDetails />
+      <Forecast title="hourly forecast" />
+      <Forecast title="daily forecast" />
+    </VStack>
   );
 }
 

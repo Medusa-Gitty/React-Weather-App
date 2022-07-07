@@ -12,7 +12,9 @@ const TopButtons = () => {
   return (
     <HStack>
       {cities.map((city) => (
-        <Button key={city.id}>{city.title}</Button>
+        <Button key={city.id} colorScheme="gray" variant="ghost">
+          {city.title}
+        </Button>
       ))}
     </HStack>
   );
