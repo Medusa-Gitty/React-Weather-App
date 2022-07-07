@@ -14,8 +14,6 @@ function App() {
   const dispatch = useDispatch();
   let { queries, units, weather } = useSelector((state) => state.weather);
 
-  console.log(queries);
-
   //Fetching Weather
   useEffect(() => {
     async function weatherData() {

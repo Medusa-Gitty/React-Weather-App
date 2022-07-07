@@ -25,10 +25,7 @@ const Inputs = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
-        // let lat = 23.85079;
         let lon = position.coords.longitude;
-        // let lon = 86.901947;
-        console.log(lat, lon);
         dispatch(weatherQueryActions.geoLocation({ lat, lon }));
       });
     }
