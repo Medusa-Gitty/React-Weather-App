@@ -12,17 +12,18 @@ import { weatherQueryActions } from "./store/weather-query-slice";
 
 function App() {
   const dispatch = useDispatch();
-  let { q, units, weather } = useSelector((state) => state.weather);
-  console.log(q, units, weather);
+  let { queries, units, weather } = useSelector((state) => state.weather);
+
+  console.log(queries);
 
   //Fetching Weather
   useEffect(() => {
     async function weatherData() {
-      const data = await getFormattedWeatherData({ q, units });
-      dispatch(weatherQueryActions.save(data));
+      const data = await getFormattedWeatherData({ ...queries, units });
+      dispatch(weatherQueryActions.weatherSave(data));
     }
     weatherData();
-  }, [q, units, dispatch]);
+  }, [queries, units, dispatch]);
 
   return (
     <VStack p={4} gap={3}>
@@ -56,3 +57,7 @@ export default App;
 
 //City name:
 // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+//Mumbai
+// lat: 19.0144
+// lon: 72.8479
