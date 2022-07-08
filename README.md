@@ -24,9 +24,9 @@
 
 This project is about building a web application to show a weather forecast using weather API from external services [Open weather map](https://openweathermap.org/). Here you will be able to search for a specific location in the world and also it will automatically detect your current location in the beginning (for that you need to allow location) and will display all the important weather details.
 
-It have some cool features like save the weather data in redux-store and session-storage to reduce the dependency of network requests, search weather details according to the city, detect your current location for displaying weather data, shows a map of that location, sync data to get the latest updated details of the current weather, toast notification for every action, pop up modal to display extra details of seven-day forecast weather, cool zoom-in zoom-out animations and responsive for every screen size.
+I have used Redux Toolkits for storing state variables and the reducers for dispatching actions, You can get a UI feeback depending of the temperature whether it is chilly or hot. Get your current location weather thanks to Google Geo location.
 
-To use the app, type a name of the city and click on search/press Enter or else click on the Your location weather button, every time you click on the button first it will check if the data is available in the session storage or not, and if not then it will send a network request else it will take the data from session-storage. 
+To use the app, you will be prompted to allow user location, you can still use the app by searching for the city or selecting any of the default tabs.
 
 
 ## 🚀 Features
@@ -35,25 +35,22 @@ To use the app, type a name of the city and click on search/press Enter or else 
 - Detect your current location for displaying weather data
 - Toast notification for every action
 - Responsive for every screen size.
+- UI feedback for the weather if it is chilly or hot.
 
 <br/>
 
+![Mobile responsive1](https://user-images.githubusercontent.com/82367609/177978968-7e099ab0-76fc-4222-a16f-8bc414de80c0.png)
+![Mobile responsive2](https://user-images.githubusercontent.com/82367609/177979902-b02e39b4-7288-4509-99c4-e21ac19cc078.png)
 
-
-![Mobile responsive](https://user-images.githubusercontent.com/82367609/177978241-139935b0-fc2d-4a83-8861-c35b9eed48b4.png)
-![Mobile responsive2](https://user-images.githubusercontent.com/82367609/177978968-7e099ab0-76fc-4222-a16f-8bc414de80c0.png)
-<br />
 
 ![weatherapp](https://user-images.githubusercontent.com/82367609/177978232-4d6a5dd1-3b36-4ca0-b2cd-ebd988668816.png)
-
 
 <br />
 
 
 ## Getting Started
 
-This project was built using React v 17.0.2, Redux v 4.1.2, Chakra UI, CSS and Rest API. It is a web application and for running on your local environment you should follow these guidelines.
-
+This project was built using React, Redux Toolkits, Chakra UI, CSS and Rest API. It is a web application and for running on your local environment you should follow these guidelines.
 
 ### Prerequisites
 
@@ -62,21 +59,7 @@ This project was built using React v 17.0.2, Redux v 4.1.2, Chakra UI, CSS and R
 ### Setup
 
 
-The project repository can be found in [GitHub link](https://github.com/m-sehrawat/Weather-App) or just clone the project using this command. 
-
-
-```
-Using HTTPS
-
-# git clone  https://github.com/m-sehrawat/Weather-App.git
-```
-
-+ Open terminal on your workspace with
-
-```
-cd /home/workspace/Weather-App
-```
-
+The project repository can be found in [GitHub link](https://github.com/Medusa-Gitty/React-Weather-App) or just clone the project. 
 
 ## Install
 
