@@ -9,13 +9,14 @@ import {
   Input,
   useToast,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { weatherQueryActions } from "../store/weather-query-slice";
 
 const Inputs = () => {
   const dispatch = useDispatch();
   const toast = useToast();
   const [input, setInput] = useState(``);
+  const { units } = useSelector((state) => state.weather);
 
   function searchCityHandler() {
     if (input === ``) {
@@ -50,6 +51,7 @@ const Inputs = () => {
   }
 
   function unitToggleHandler(event) {
+    if (units === event.target.name) return;
     dispatch(weatherQueryActions.unitToggle(event.target.name));
     toast({
       title: `Updated units  to : ${event.target.name}`,

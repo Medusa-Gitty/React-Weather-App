@@ -34,9 +34,16 @@ function App() {
     weatherData();
   }, [queries, units, dispatch]);
 
+  const FormatBackGround = () => {
+    if (!weather) return cool;
+    const threshold = units === "metric" ? 20 : 60;
+    if (weather.temp <= threshold) return cool;
+    return hot;
+  };
+
   return (
     <>
-      <Image src={cool} className="image" />
+      <Image src={FormatBackGround()} className="image" />
       <VStack p={5} gap={3} className="texts" w={["100%", "70%"]}>
         <TopButtons />
         <Inputs />
