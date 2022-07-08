@@ -71,6 +71,7 @@ const Inputs = () => {
           }}
           value={input}
           fontSize="xl"
+          boxShadow="md"
         />
         <IconButton
           icon={<Search2Icon />}
@@ -78,6 +79,7 @@ const Inputs = () => {
           onClick={searchCityHandler}
           color="gray"
           isRound={true}
+          boxShadow="md"
         />
         <IconButton
           icon={<LocationOnIcon />}
@@ -85,14 +87,15 @@ const Inputs = () => {
           onClick={searchLocationHandler}
           color="gray"
           isRound={true}
+          boxShadow="md"
         />
       </Flex>
       <Flex justify="center" gap={3} color="gray">
-        <Button name="metric" onClick={unitToggleHandler}>
+        <Button name="metric" onClick={unitToggleHandler} boxShadow="md">
           °C
         </Button>
         <Divider orientation="vertical" />
-        <Button name="imperial" onClick={unitToggleHandler}>
+        <Button name="imperial" onClick={unitToggleHandler} boxShadow="md">
           °F
         </Button>
       </Flex>
