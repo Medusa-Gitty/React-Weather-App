@@ -1,4 +1,4 @@
-import { Box, HStack, Image, VStack } from "@chakra-ui/react";
+import { Flex, HStack, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import { iconUrlFromCode } from "../services/weatherService";
@@ -13,19 +13,23 @@ const Forecast = ({ title }) => {
   const arr = title === "daily" ? data.daily : data.hourly;
 
   return (
-    <Box width="100%">
-      <p>{title.toUpperCase()}</p>
-      <hr />
+    <Flex width="100%" gap={2} direction="column">
+      <Text fontSize="xl">{title.toUpperCase()}</Text>
+      <hr
+        style={{
+          borderTop: "2px solid white",
+        }}
+      />
       <HStack justifyContent={"space-between"}>
         {arr.map((item, index) => (
-          <VStack key={index}>
-            <span>{item.title}</span>
+          <Flex key={index} direction="column" align="center">
+            <Text fontSize={["14px", "xl"]}>{item.title}</Text>
             <Image src={iconUrlFromCode(item.icon)} />
-            <p>{`${item.temp.toFixed()}°`}</p>
-          </VStack>
+            <Text fontSize={["14px", "xl"]}>{`${item.temp.toFixed()}°`}</Text>
+          </Flex>
         ))}
       </HStack>
-    </Box>
+    </Flex>
   );
 };
 
