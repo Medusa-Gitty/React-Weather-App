@@ -14,7 +14,7 @@ const Forecast = ({ title }) => {
 
   return (
     <Flex width="100%" gap={2} direction="column">
-      <Text fontSize="xl">{title.toUpperCase()}</Text>
+      <Text fontSize="xl">{title.toUpperCase()} FORECAST</Text>
       <hr
         style={{
           borderTop: "2px solid white",
