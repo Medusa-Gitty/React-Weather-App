@@ -18,21 +18,22 @@ const TopButtons = () => {
   const cityQueryHandler = (city) => {
     dispatch(weatherQueryActions.query(city));
     toast({
-      title: "Account created.",
-      description: "We've created your account for you.",
+      title: `Fetched weather for : ${city}`,
       status: "success",
+      variant: "subtle",
       duration: 2000,
       isClosable: true,
     });
   };
 
   return (
-    <HStack>
+    <HStack width="100%" justify="center" gap={2}>
       {cities.map((city) => (
         <Button
           key={city.id}
-          colorScheme="gray"
-          variant="ghost"
+          color="white"
+          fontSize="xl"
+          variant="link"
           onClick={() => cityQueryHandler(city.title)}
         >
           {city.title}

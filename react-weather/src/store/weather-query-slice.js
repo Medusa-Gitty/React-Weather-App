@@ -18,6 +18,9 @@ const weatherQuerySlice = createSlice({
     geoLocation(state, payload) {
       state.queries = payload.payload;
     },
+    unitToggle(state, payload) {
+      state.units = payload.payload;
+    },
   },
 });
 

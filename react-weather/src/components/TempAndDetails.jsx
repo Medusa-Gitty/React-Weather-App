@@ -17,7 +17,7 @@ const TempAndDetails = () => {
   let data = useSelector((state) => state.weather.weather);
 
   return (
-    <VStack>
+    <VStack border="1px solid">
       <Box>{data.details}</Box>
       <HStack>
         <Image src={iconUrlFromCode(data.icon)} />
@@ -59,7 +59,6 @@ const TempAndDetails = () => {
           <p>Low : {`${+data.temp_min.toFixed()}°`}</p>
         </Flex>
       </HStack>
-      :
     </VStack>
   );
 };
